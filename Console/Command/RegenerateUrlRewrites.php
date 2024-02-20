@@ -120,6 +120,12 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesAbstract
                     InputOption::VALUE_NONE,
                     'Prevent url_key regeneration'
                 ),
+                new InputOption(
+                    self::INPUT_KEY_PRODUCT_VISIBILITY_ALL,
+                    null,
+                    InputOption::VALUE_NONE,
+                    'Regenerate Url rewrites for all product visibility'
+                ),
             ]);
     }
 

@@ -76,6 +76,12 @@ or
 * if you do not want to display a progress progress bar in the console then use option `--no-progress`:
 >`$> php bin/magento ok:urlrewrites:regenerate --no-progress`
 
+* if you do not want to regenerate url rewrites for products with any visibility then use option `--product-visibility-all`:
+>`$> php bin/magento ok:urlrewrites:regenerate --product-visibility-all`
+
+* example to use:
+>`$> php bin/magento ok:urlrewrites:regenerate --entity-type=product --save-old-urls --no-regen-url-key --product-visibility-all`
+
 #### REGENERATE URL REWRITES OF CATEGORY
 * to regenerate Url Rewrites of all categories in all stores set entity type to "category":
 >`$> php bin/magento ok:urlrewrites:regenerate --entity-type=category`
