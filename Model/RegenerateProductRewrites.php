@@ -193,6 +193,10 @@ class RegenerateProductRewrites extends AbstractRegenerateRewrites
             $updateAttributes['url_key'] = $generatedKey;
         }
 
+        if ($this->regenerateOptions['productVisibilityAll'] && $entity->getVisibility() == Visibility::VISIBILITY_NOT_VISIBLE) {
+            $entity->setVisibility(Visibility::VISIBILITY_IN_CATALOG);
+        }
+
         $this->_getProductAction()->updateAttributes(
             [$entity->getId()],
             $updateAttributes,
