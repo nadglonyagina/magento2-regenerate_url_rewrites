@@ -226,6 +226,10 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesAbstract
             $this->_commandOptions['runCacheFlush'] = false;
         }
 
+        if (isset($options[self::INPUT_KEY_PRODUCT_VISIBILITY_ALL]) && $options[self::INPUT_KEY_PRODUCT_VISIBILITY_ALL] === true) {
+            $this->_commandOptions['productVisibilityAll'] = true;
+        }
+
         if (isset($options[self::INPUT_KEY_PRODUCTS_RANGE])) {
             $this->_commandOptions['productsFilter'] = $this->_generateIdsRangeArray(
                 $options[self::INPUT_KEY_PRODUCTS_RANGE],
