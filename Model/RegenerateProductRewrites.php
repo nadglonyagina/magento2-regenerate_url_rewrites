@@ -193,6 +193,10 @@ class RegenerateProductRewrites extends AbstractRegenerateRewrites
             $updateAttributes['url_key'] = $generatedKey;
         }
 
+        if ($this->regenerateOptions['productVisibilityAll'] && $entity->getVisibility() == Visibility::VISIBILITY_NOT_VISIBLE) {
+            $entity->setVisibility(Visibility::VISIBILITY_IN_CATALOG);
+        }
+
         $this->_getProductAction()->updateAttributes(
             [$entity->getId()],
             $updateAttributes,
@@ -266,9 +270,12 @@ class RegenerateProductRewrites extends AbstractRegenerateRewrites
             ->addAttributeToSelect('visibility')
             ->addAttributeToSelect('url_key')
             ->addAttributeToSelect('url_path')
-            ->addAttributeToFilter('visibility', ['neq' => Visibility::VISIBILITY_NOT_VISIBLE])
             // use limit to avoid a "eating" of a memory
             ->setPageSize($this->productsCollectionPageSize);
+
+        if ($this->regenerateOptions['productVisibilityAll'] === false) {
+            $productsCollection->addAttributeToFilter('visibility', ['neq' => Visibility::VISIBILITY_NOT_VISIBLE]);
+        }
 
         if (count($productsFilter) > 0) {
             $productsCollection->addIdFilter($productsFilter);

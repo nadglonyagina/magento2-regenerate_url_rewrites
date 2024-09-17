@@ -120,6 +120,12 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesAbstract
                     InputOption::VALUE_NONE,
                     'Prevent url_key regeneration'
                 ),
+                new InputOption(
+                    self::INPUT_KEY_PRODUCT_VISIBILITY_ALL,
+                    null,
+                    InputOption::VALUE_NONE,
+                    'Regenerate Url rewrites for all product visibility'
+                ),
             ]);
     }
 
@@ -224,6 +230,10 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesAbstract
 
         if (isset($options[self::INPUT_KEY_NO_CACHE_FLUSH]) && $options[self::INPUT_KEY_NO_CACHE_FLUSH] === true) {
             $this->_commandOptions['runCacheFlush'] = false;
+        }
+
+        if (isset($options[self::INPUT_KEY_PRODUCT_VISIBILITY_ALL]) && $options[self::INPUT_KEY_PRODUCT_VISIBILITY_ALL] === true) {
+            $this->_commandOptions['productVisibilityAll'] = true;
         }
 
         if (isset($options[self::INPUT_KEY_PRODUCTS_RANGE])) {
